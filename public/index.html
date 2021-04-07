@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>jasmine-home React &amp; Redux</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Default Description">
+  <meta name="keywords" content="fashion, store, E-commerce">
+  <meta name="robots" content="*">
+  <link rel="icon" href="#" type="image/x-icon">
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+
+  <!-- CSS Style -->
+  <link rel="stylesheet" type="text/css" href="stylesheet/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="stylesheet/font-awesome.css" media="all">
+  <link rel="stylesheet" type="text/css" href="stylesheet/revslider.css">
+  <link rel="stylesheet" type="text/css" href="stylesheet/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="stylesheet/owl.theme.css">
+  <link rel="stylesheet" type="text/css" href="stylesheet/jquery.bxslider.css">
+  <link rel="stylesheet" type="text/css" href="stylesheet/jquery.mobile-menu.css">
+  <link rel="stylesheet" type="text/css" href="stylesheet/style.css" media="all">
+  <link rel="stylesheet" type="text/css" href="stylesheet/responsive.css" media="all">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,600,800,400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i,900" rel="stylesheet">
+
+  <style>
+    /* Preloader */
+    .ctn-preloader{
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	cursor: default;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	height: 100%;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: 9000;
+	transition: opacity 0.2s linear;
+  }
+  .loader--hide {
+	opacity: 0;
+  }
+  .loader--hide .ctn-preloader{
+	z-index: -9999;
+	visibility: hidden;
+  }
+  .ctn-preloader .animation-preloader {
+	z-index: 1000;
+  }
+
+  .ctn-preloader .animation-preloader .spinner {
+	-webkit-animation: spinner 1s infinite linear;
+	animation: spinner 1s infinite linear;
+	border-radius: 50%;
+	border: 3px solid rgba(0, 0, 0, 0.2);
+	border-top-color: #000000;
+	height: 9em;
+	margin: 0 auto 3.5em auto;
+	width: 9em;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading {
+	font: bold 5em "Poppins", sans-serif;
+	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading {
+	color: #ceae6d;
+	position: relative;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading:before {
+	-webkit-animation: letters-loading 4s infinite;
+	animation: letters-loading 4s infinite;
+	color: #103426;
+	content: attr(data-text-preloader);
+	left: 0;
+	opacity: 0;
+	font-family: "Poppins", sans-serif;
+	position: absolute;
+	top: -3px;
+	-webkit-transform: rotateY(-90deg);
+	transform: rotateY(-90deg);
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading:nth-child(2):before {
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading:nth-child(3):before {
+	-webkit-animation-delay: 0.4s;
+	animation-delay: 0.4s;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading:nth-child(4):before {
+	-webkit-animation-delay: 0.6s;
+	animation-delay: 0.6s;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading:nth-child(5):before {
+	-webkit-animation-delay: 0.8s;
+	animation-delay: 0.8s;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading:nth-child(6):before {
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading:nth-child(7):before {
+	-webkit-animation-delay: 1.2s;
+	animation-delay: 1.2s;
+  }
+
+  .ctn-preloader .animation-preloader .txt-loading .letters-loading:nth-child(8):before {
+	-webkit-animation-delay: 1.4s;
+	animation-delay: 1.4s;
+  }
+
+  .ctn-preloader.dark .animation-preloader .spinner {
+	border-color: #103426;
+	border-top-color: #fff;
+  }
+
+  .ctn-preloader.dark .animation-preloader .txt-loading .letters-loading {
+	color: #103426;
+  }
+
+  .ctn-preloader.dark .animation-preloader .txt-loading .letters-loading:before {
+	color: #fff;
+  }
+
+  .ctn-preloader p {
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 8px;
+	color: #ceae6d;
+	display: block;
+	text-align: center;
+  }
+
+@-webkit-keyframes spinner {
+	to {
+	  -webkit-transform: rotateZ(360deg);
+	  transform: rotateZ(360deg);
+	}
+  }
+  
+  @keyframes spinner {
+	to {
+	  -webkit-transform: rotateZ(360deg);
+	  transform: rotateZ(360deg);
+	}
+  }
+  
+  @-webkit-keyframes letters-loading {
+	0%,
+	75%,
+	100% {
+	  opacity: 0;
+	  -webkit-transform: rotateY(-90deg);
+	  transform: rotateY(-90deg);
+	}
+	25%,
+	50% {
+	  opacity: 1;
+	  -webkit-transform: rotateY(0deg);
+	  transform: rotateY(0deg);
+	}
+  }
+  
+  @keyframes letters-loading {
+	0%,
+	75%,
+	100% {
+	  opacity: 0;
+	  -webkit-transform: rotateY(-90deg);
+	  transform: rotateY(-90deg);
+	}
+	25%,
+	50% {
+	  opacity: 1;
+	  -webkit-transform: rotateY(0deg);
+	  transform: rotateY(0deg);
+	}
+  }
+  
+  @media screen and (max-width: 767px) {
+	.ctn-preloader .animation-preloader .spinner {
+	  height: 8em;
+	  width: 8em;
+	}
+	.ctn-preloader .animation-preloader .txt-loading {
+	  font: bold 3.5em "Poppins", sans-serif;
+	}
+  }
+  
+  @media screen and (max-width: 500px) {
+	.ctn-preloader .animation-preloader .spinner {
+	  height: 7em;
+	  width: 7em;
+	}
+	.ctn-preloader .animation-preloader .txt-loading {
+	  font: bold 2em "Poppins", sans-serif;
+	}
+  }
+  </style>
+</head>
+
+<body>
+
+  <div id="page">
+    <div class="preloader"></div>
+    <div id="root"></div>
+    <div id="preloader">
+      <div id="ctn-preloader" class="ctn-preloader">
+        <div class="animation-preloader">
+          <div class="spinner"></div>
+          <div class="txt-loading">
+            <span data-text-preloader="J" class="letters-loading">
+             J
+            </span>
+            <span data-text-preloader="A" class="letters-loading">
+            A
+            </span>
+            <span data-text-preloader="S" class="letters-loading">
+            S
+            </span>
+            <span data-text-preloader="M" class="letters-loading">
+            M
+            </span>
+            <span data-text-preloader="I" class="letters-loading">
+            I
+            </span>
+            <span data-text-preloader="N" class="letters-loading">
+             N
+            </span>
+            <span data-text-preloader="E" class="letters-loading">
+              E
+             </span>
+        
+          </div>
+          <p class="text-center">Home</p>
+        </div>
+      </div>
+    </div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+  <!-- JavaScript -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/parallax.js"></script>
+  <script src="js/revslider.js"></script>
+  <script src="js/jquery.bxslider.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script> 
+  <script src="js/cloud-zoom.js"></script>
+  <script src="js/jquery.mobile-menu.min.js"></script>
+  <script src="js/countdown.js"></script>
+  <script src="js/common.js"></script>
+  <script>
+
+    var sliderr = function () {
+      jQuery(document).ready(function () {
+        jQuery('#thm-rev-slider').show().revolution({
+          dottedOverlay: 'none',
+          delay: 5000,
+          startwidth: 0,
+          startheight: 750,
+
+          hideThumbs: 200,
+          thumbWidth: 200,
+          thumbHeight: 50,
+          thumbAmount: 2,
+
+          navigationType: 'thumb',
+          navigationArrows: 'solo',
+          navigationStyle: 'round',
+
+          touchenabled: 'on',
+          onHoverStop: 'on',
+
+          swipe_velocity: 0.7,
+          swipe_min_touches: 1,
+          swipe_max_touches: 1,
+          drag_block_vertical: false,
+
+          spinner: 'spinner0',
+          keyboardNavigation: 'off',
+
+          navigationHAlign: 'center',
+          navigationVAlign: 'bottom',
+          navigationHOffset: 0,
+          navigationVOffset: 20,
+
+          soloArrowLeftHalign: 'left',
+          soloArrowLeftValign: 'center',
+          soloArrowLeftHOffset: 20,
+          soloArrowLeftVOffset: 0,
+
+          soloArrowRightHalign: 'right',
+          soloArrowRightValign: 'center',
+          soloArrowRightHOffset: 20,
+          soloArrowRightVOffset: 0,
+
+          shadow: 0,
+          fullWidth: 'on',
+          fullScreen: 'on',
+
+          stopLoop: 'off',
+          stopAfterLoops: -1,
+          stopAtSlide: -1,
+
+          shuffle: 'off',
+
+          autoHeight: 'on',
+          forceFullWidth: 'off',
+          fullScreenAlignForce: 'off',
+          minFullScreenHeight: 0,
+          hideNavDelayOnMobile: 1500,
+
+          hideThumbsOnMobile: 'off',
+          hideBulletsOnMobile: 'off',
+          hideArrowsOnMobile: 'off',
+          hideThumbsUnderResolution: 0,
+
+          hideSliderAtLimit: 0,
+          hideCaptionAtLimit: 0,
+          hideAllCaptionAtLilmit: 0,
+          startWithSlide: 0,
+          fullScreenOffsetContainer: ''
+        });
+      });
+    }
+
+    sliderr();
+
+  </script>
+  <script>
+    function HideMe() {
+      jQuery('.popup1').hide();
+      jQuery('#fade').hide();
+    }
+  </script>
+  <!-- Hot Deals Timer 1-->
+  <script>
+    var dthen1 = new Date("11/04/21 11:59:00 PM");
+    start = "08/04/21 03:02:11 AM";
+    start_date = Date.parse(start);
+    var dnow1 = new Date(start_date);
+    if (CountStepper > 0)
+      ddiff = new Date((dnow1) - (dthen1));
+    else
+      ddiff = new Date((dthen1) - (dnow1));
+    gsecs1 = Math.floor(ddiff.valueOf() / 1000);
+
+    var iid1 = "countbox_1";
+    CountBack_slider(gsecs1, "countbox_1", 1);
+  </script>
+</body>
+
+</html>
